@@ -1,143 +1,146 @@
-import { Suspense } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Box } from '@react-three/drei';
-import { Code, Layout, Zap, Shield, Search, BarChart } from 'lucide-react';
-import { Button } from '../components/ui/button';
-
-function Scene() {
-  return (
-    <Canvas camera={{ position: [0, 0, 5] }}>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      <Suspense fallback={null}>
-        <Box args={[1, 1, 1]}>
-          <meshStandardMaterial color="#6366f1" />
-        </Box>
-      </Suspense>
-      <OrbitControls autoRotate />
-    </Canvas>
-  );
-}
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const WebDevelopment = () => {
-  const features = [
+  const projects = [
     {
-      icon: Layout,
-      title: "Diseño Responsivo",
-      description: "Interfaces adaptables a cualquier dispositivo"
+      title: "E-commerce Platform",
+      image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80",
+      description: "Plataforma de comercio electrónico con IA para recomendaciones personalizadas",
+      tech: ["React", "Node.js", "GraphQL", "AWS"]
     },
     {
-      icon: Zap,
-      title: "Alto Rendimiento",
-      description: "Optimización para velocidad y eficiencia"
+      title: "Dashboard Analytics",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80",
+      description: "Dashboard interactivo con visualización de datos en tiempo real",
+      tech: ["Vue.js", "D3.js", "Firebase", "TypeScript"]
     },
     {
-      icon: Shield,
-      title: "Seguridad Avanzada",
-      description: "Protección contra vulnerabilidades"
-    },
-    {
-      icon: Search,
-      title: "SEO Optimizado",
-      description: "Mejor visibilidad en buscadores"
-    },
-    {
-      icon: Code,
-      title: "Código Limpio",
-      description: "Desarrollo mantenible y escalable"
-    },
-    {
-      icon: BarChart,
-      title: "Analytics",
-      description: "Métricas y análisis detallado"
+      title: "SaaS Platform",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
+      description: "Plataforma SaaS para gestión empresarial",
+      tech: ["Next.js", "Prisma", "PostgreSQL", "Docker"]
     }
   ];
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="min-h-screen relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full" style={{ background: 'linear-gradient(to right, #000000, #130F40)' }}>
-            <div className="absolute inset-0" style={{ height: '400px' }}>
-              <Scene />
-            </div>
-          </div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 pt-32">
+    <div className="pt-20 min-h-screen bg-gradient-to-br from-black via-emerald-950 to-black">
+      <div className="container mx-auto px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-blue-500">
+            Desarrollo Web
+          </h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Creamos experiencias web excepcionales que transforman tu visión en realidad
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-              Desarrollo Web Profesional
-            </h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Creamos experiencias web excepcionales utilizando las últimas tecnologías y mejores prácticas
-            </p>
-            <Button variant="gradient" size="lg">
-              Solicitar Cotización
-            </Button>
+            <h2 className="text-3xl font-bold mb-6 text-white">Tecnologías de Vanguardia</h2>
+            <ul className="space-y-4">
+              {[
+                "React y Next.js para aplicaciones modernas",
+                "APIs RESTful y GraphQL",
+                "Bases de datos SQL y NoSQL",
+                "AWS y servicios cloud",
+                "CI/CD y DevOps"
+              ].map((item, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center gap-3 text-gray-300"
+                >
+                  <span className="w-2 h-2 bg-emerald-500 rounded-full" />
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-20 bg-black/50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-indigo-900/50 to-purple-900/50 p-6 rounded-xl backdrop-blur-lg"
-              >
-                <feature.icon className="w-12 h-12 text-indigo-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Technologies Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-indigo-950">
-        <div className="container mx-auto px-4">
+          
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
           >
-            <h2 className="text-4xl font-bold mb-6">Tecnologías que Utilizamos</h2>
-            <p className="text-gray-300">
-              Trabajamos con las herramientas más modernas y eficientes del mercado
-            </p>
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-xl blur-xl opacity-20" />
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80"
+              alt="Web Development"
+              className="rounded-xl relative z-10"
+            />
           </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {['React', 'Vue', 'Node.js', 'TypeScript', 'Next.js', 'TailwindCSS', 'GraphQL', 'AWS'].map((tech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/5 backdrop-blur-lg rounded-lg p-6 text-center"
-              >
-                <p className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                  {tech}
-                </p>
-              </motion.div>
-            ))}
-          </div>
         </div>
-      </section>
+
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold mb-12 text-center text-white">
+            Proyectos Destacados
+          </h2>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000 }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            className="pb-12"
+          >
+            {projects.map((project, index) => (
+              <SwiperSlide key={index}>
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  className="bg-gradient-to-br from-white/5 to-white/10 rounded-xl overflow-hidden"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full aspect-video object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-white">{project.title}</h3>
+                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
     </div>
   );
 };

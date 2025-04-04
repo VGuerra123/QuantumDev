@@ -1,151 +1,146 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Bot, Cpu, Database, Network, Sparkles } from 'lucide-react';
-import { Button } from '../components/ui/button';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const AIIntegration = () => {
-  const features = [
+  const projects = [
     {
-      icon: Brain,
-      title: "Machine Learning",
-      description: "Modelos personalizados para tu negocio"
+      title: "AI Vision System",
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80",
+      description: "Sistema de visión artificial para control de calidad",
+      tech: ["TensorFlow", "OpenCV", "Python", "AWS"]
     },
     {
-      icon: Bot,
-      title: "Chatbots IA",
-      description: "Asistentes virtuales inteligentes"
+      title: "NLP Platform",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80",
+      description: "Plataforma de procesamiento de lenguaje natural",
+      tech: ["PyTorch", "BERT", "FastAPI", "Docker"]
     },
     {
-      icon: Database,
-      title: "Big Data",
-      description: "Análisis de grandes volúmenes de datos"
-    },
-    {
-      icon: Network,
-      title: "Redes Neuronales",
-      description: "Procesamiento de patrones complejos"
-    },
-    {
-      icon: Cpu,
-      title: "Automatización",
-      description: "Procesos optimizados con IA"
-    },
-    {
-      icon: Sparkles,
-      title: "NLP",
-      description: "Procesamiento de lenguaje natural"
+      title: "Predictive Analytics",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80",
+      description: "Sistema de análisis predictivo para negocios",
+      tech: ["Scikit-learn", "React", "Python", "MongoDB"]
     }
   ];
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="min-h-screen relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-gradient-to-br from-blue-900 via-black to-purple-900">
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
-              className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent"
-            />
-          </div>
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 pt-32">
+    <div className="pt-20 min-h-screen bg-gradient-to-br from-black via-violet-950 to-black">
+      <div className="container mx-auto px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-fuchsia-500">
+            Integración con IA
+          </h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Potenciamos tu negocio con soluciones de Inteligencia Artificial
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-              Integración de Inteligencia Artificial
-            </h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Potencia tu negocio con soluciones avanzadas de IA y Machine Learning
-            </p>
-            <Button variant="gradient" size="lg">
-              Explorar Soluciones
-            </Button>
+            <h2 className="text-3xl font-bold mb-6 text-white">Tecnologías de IA</h2>
+            <ul className="space-y-4">
+              {[
+                "Machine Learning y Deep Learning",
+                "Procesamiento de Lenguaje Natural",
+                "Visión por Computadora",
+                "Análisis Predictivo",
+                "Sistemas de Recomendación"
+              ].map((item, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center gap-3 text-gray-300"
+                >
+                  <span className="w-2 h-2 bg-violet-500 rounded-full" />
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-20 bg-black/50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-blue-900/50 to-purple-900/50 p-6 rounded-xl backdrop-blur-lg"
-              >
-                <feature.icon className="w-12 h-12 text-blue-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-blue-950">
-        <div className="container mx-auto px-4">
+          
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
           >
-            <h2 className="text-4xl font-bold mb-6">Casos de Uso</h2>
-            <p className="text-gray-300">
-              Descubre cómo la IA puede transformar tu industria
-            </p>
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl blur-xl opacity-20" />
+            <img
+              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80"
+              alt="AI Integration"
+              className="rounded-xl relative z-10"
+            />
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Análisis Predictivo",
-                description: "Anticipa tendencias y comportamientos del mercado"
-              },
-              {
-                title: "Reconocimiento de Imágenes",
-                description: "Automatiza la clasificación y análisis visual"
-              },
-              {
-                title: "Procesamiento de Texto",
-                description: "Extrae información valiosa de documentos"
-              },
-              {
-                title: "Optimización de Procesos",
-                description: "Mejora la eficiencia operativa con IA"
-              }
-            ].map((useCase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-8 rounded-xl backdrop-blur-lg border border-white/10"
-              >
-                <h3 className="text-2xl font-semibold mb-4">{useCase.title}</h3>
-                <p className="text-gray-400">{useCase.description}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
-      </section>
+
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold mb-12 text-center text-white">
+            Proyectos Destacados
+          </h2>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000 }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            className="pb-12"
+          >
+            {projects.map((project, index) => (
+              <SwiperSlide key={index}>
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  className="bg-gradient-to-br from-white/5 to-white/10 rounded-xl overflow-hidden"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full aspect-video object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-white">{project.title}</h3>
+                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-violet-500/10 text-violet-400 rounded-full text-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
     </div>
   );
 };
